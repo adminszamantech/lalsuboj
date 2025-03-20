@@ -1,0 +1,289 @@
+<header class="print:hidden hidden md:block header_top bg-white dark:bg-transparent border-b border-gray-300 dark:border-0">
+
+    <div class="news_container">
+        <div class="flex justify-between items-center">
+            <div class="dark:text-white">
+                <?php
+                    $bn= new \App\Http\Controllers\Frontend\BanglaDateController(time(), 0);
+                      $bnDate=$bn->get_date();
+
+                      $enDate = $bn->fFormatDate(date('l, d F Y'));
+                ?>
+                <p style="display: block;">
+                    <i class="fa fa-calendar"></i> <?php echo e($enDate); ?>
+
+                </p>
+            </div>
+            <div>
+                <a href="<?php echo e(url('/')); ?>" class="py-4 block">
+                    <img class="logo_header" src="<?php echo e(asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->logo)); ?>" alt="<?php echo e(Cache::get('bnSiteSettings')->site_name); ?>">
+                </a>
+            </div>
+
+            <div>
+                <div class="flex gap-4 justify-center items-center">
+                    <?php if(Cache::get('bnSiteSettings')->facebook): ?>
+                        <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->facebook); ?>" target="_blank">
+                            <div style="background: #0866ff; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                <i class="fa fa-facebook"></i>
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                    <?php if(Cache::get('bnSiteSettings')->twitter): ?>
+                        <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->twitter); ?>" target="_blank">
+                            <div style="background: #00ACEE; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                <i class="fa fa-twitter"></i>
+                              
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                    <?php if(Cache::get('bnSiteSettings')->instagram): ?>
+                        <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->instagram); ?>" target="_blank">
+                            <div style="background: #C13584; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                <i class="fa fa-instagram"></i>
+                                
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                    <?php if(Cache::get('bnSiteSettings')->youtube): ?>
+                        <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->youtube); ?>">
+                            <div style="background: #FF0000; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                <i class="fa fa-youtube"></i>
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                    <?php if(Cache::get('bnSiteSettings')->linkedin): ?>
+                        <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->linkedin); ?>" target="_blank">
+                            <div style="background: #0077B5; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                <i class="fa fa-linkedin"></i>
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="header_menu_container hidden md:block sticky top-0 w-full z-50">
+    <div class="header_menu hidden md:block bg-white dark:bg-[#26334d] dark:border-t dark:border-b dark:border-[#fff2]">
+        <div class="news_container">
+            <!-- Header Section -->
+            <div class="flex justify-between items-center">
+                <div class="flex flex-row items-center">
+                    <!-- Desktop Menu -->
+                    
+                   
+                    
+
+                    <nav class="font-semibold py-4 dark:text-slate-100 text-[25px]">
+                        <a href="<?php echo e(url('/latest/news')); ?>" style="padding-right:30px;" class="<?php echo e(request()->is('latest/news') ? 'active' : ''); ?> relative after:absolute duration-200 after:top-[13px] after:ml-1 hover:text-base-color-hover py-3">সর্বশেষ</a>
+                        <?php
+                            $categories = bnHeaderToCategory();
+                        ?>
+                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <a href="<?php echo e(url('/'.$category->cat_slug)); ?>" style="padding-right:30px;" class="relative after:absolute duration-200 after:top-[13px] after:ml-1 hover:text-base-color-hover py-3"><?php echo e($category->cat_name_bn); ?></a>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </nav>
+                        
+                    
+                </div>
+                <div class="flex flex-row gap-3 items-center relative">
+                    <div class="relative">
+                        <div onclick="searchBox()" class="search_btn dark:text-white cursor-pointer z-50">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div onclick="searchBox()" class="search_close dark:text-white text-xl cursor-pointer hidden z-50">
+                            <i class="fa fa-close"></i>
+                        </div>
+                        <div class="search_box absolute right-6 -top-[7px] hidden">
+                           <div class="flex flex-row items-center">
+                               <input id="search_keyword" type="text" class="px-4 flex w-[400px] focus:outline-none py-2 border-custom-bc dark:text-slate-300 dark:bg-black dark:border-gray-600" placeholder="অনুসন্ধান করুন">
+                               <div onclick="searchNews()" class="cursor-pointer searchbtn border-custom-bc dark:border-gray-600 px-4 py-2 bg-gray-400">
+                                   <i class="fa fa-search"></i>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                    
+                    <div id="menu-icon" class="menu_icon text-xl cursor-pointer dark:text-white">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="px-3">
+        <div class="relative max-w-[1248px] mx-auto">
+            <div id="mega-menu" class="transition-transform transform translate-y-[60px] invisible duration-200 absolute left-0 -top-[5px] left-0 w-full mega_menu_container z-50">
+                <div class="w-full bg-white dark:bg-[#26334d] px-10 mega_menu_item_container">
+                    <div class="mega_menu_header py-3 dark:text-slate-300 text-sm font-semibold border-b border-custom-bc dark:border-gray-600">
+                        <i class="fa fa-calendar"></i> <?php echo e($enDate); ?>
+
+                    , <?php echo e($bnDate[0]." ".$bnDate[1]." ".$bnDate[2]); ?>
+
+                    </div>
+                    <div class="grid grid-cols-7 items-center justify-center gap-6 py-8">
+                        <?php $mega_menus = bnHeaderCategory() ?>
+                        <a class="text-sm font-semibold dark:text-slate-300 menuClass hover:pl-2 hover:text-base-color-hover relative after:absolute after:top-[1px] after:ml-2 hover:after:content-['⮞']" href="<?php echo e(url('/latest/news')); ?>">সর্বশেষ</a>
+                        <?php $__currentLoopData = $mega_menus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mega_menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <a class="text-sm menuClass font-semibold dark:text-slate-300 hover:pl-2 hover:text-base-color-hover relative after:absolute after:top-[1px] after:ml-2 hover:after:content-['⮞']" href="<?php echo e(url('/'.$mega_menu->cat_slug)); ?>"><?php echo e($mega_menu->cat_name_bn); ?></a>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+                    <div class="social_icons py-4 border-t border-custom-bc">
+                        <div class="flex gap-8 justify-center items-center">
+                            <?php if(Cache::get('bnSiteSettings')->facebook): ?>
+                            <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->facebook); ?>" target="_blank">
+                                <div style="background: #0866ff; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                    <i class="fa fa-facebook"></i>
+                                    
+                                </div>
+                            </a>
+                            <?php endif; ?>
+                            <?php if(Cache::get('bnSiteSettings')->twitter): ?>
+                            <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->twitter); ?>" target="_blank">
+                                <div style="background: #00ACEE; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                    <i class="fa fa-twitter"></i>
+                                   
+                                </div>
+                            </a>
+                            <?php endif; ?>
+                            <?php if(Cache::get('bnSiteSettings')->instagram): ?>
+                            <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->instagram); ?>" target="_blank">
+                                <div style="background: #C13584; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                    <i class="fa fa-instagram"></i>
+                                    
+                                </div>
+                            </a>
+                            <?php endif; ?>
+                            <?php if(Cache::get('bnSiteSettings')->youtube): ?>
+                            <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->youtube); ?>">
+                                <div style="background: #FF0000; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                    <i class="fa fa-youtube"></i>
+                                  
+                                </div>
+                            </a>
+                            <?php endif; ?>
+                            <?php if(Cache::get('bnSiteSettings')->linkedin): ?>
+                            <a class="group" href="<?php echo e(Cache::get('bnSiteSettings')->linkedin); ?>" target="_blank">
+                                <div style="background: #0077B5; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
+                                    <i class="fa fa-linkedin"></i>
+                                    
+                                </div>
+                            </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    let search_status = false;
+
+    function searchBox() {
+        if (search_status === false) {
+            search_status = true;
+            $('.search_btn').addClass('hidden');
+            $('.search_close').removeClass('hidden');
+
+            // Slide down the search box
+            $('.search_box').removeClass('hidden').addClass('show');
+            $('.searchbtn').addClass('border')
+            $('.search_box input').addClass('border')
+        } else {
+            search_status = false;
+            $('#search_keyword').val('');
+            $('.search_btn').removeClass('hidden');
+            $('.search_close').addClass('hidden');
+
+            // Slide up the search box
+            $('.search_box').removeClass('show');
+            // Add a slight delay before hiding to complete the slide-up transition
+            setTimeout(() => {
+                $('.search_box').addClass('hidden');
+                $('.search_box input').addClass('border')
+                $('.searchbtn').addClass('border')
+            }, 300); // Match the duration of the CSS transition
+        }
+    }
+
+    $(document).ready(function() {
+        // Click event on document to hide search box when clicking outside
+        $(document).click(function(event) {
+            var $target = $(event.target);
+            if (!$target.closest('.search_box').length && !$target.closest('.search_btn').length && !$target.closest('.search_close').length) {
+                if (search_status) {
+                    search_status = false;
+                    $('#search_keyword').val('');
+                    $('.search_btn').removeClass('hidden');
+                    $('.search_close').addClass('hidden');
+                    $('.searchbtn').removeClass('border')
+                    $('.search_box input').removeClass('border')
+                    // Slide up the search box
+                    $('.search_box').removeClass('show');
+                    setTimeout(() => {
+                        $('.search_box').addClass('hidden');
+                    }, 300); // Match the duration of the CSS transition
+
+                }
+            }
+        });
+    });
+
+
+    // Search News
+    function searchNews(){
+        let keyword = $('#search_keyword').val()
+        if (keyword.length > 0){
+            window.location.href = "<?php echo e(url('/search?q=')); ?>"+keyword
+        }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuIcon = document.getElementById('menu-icon');
+        const megaMenu = document.getElementById('mega-menu');
+
+        function toggleMegaMenu() {
+            if (megaMenu.classList.contains('translate-y-[60px]')) {
+                megaMenu.classList.remove('translate-y-[60px]');
+                megaMenu.classList.remove('invisible');
+                megaMenu.classList.add('translate-y-0');
+                $('.menuClass').addClass('duration-300');
+            } else {
+                megaMenu.classList.remove('translate-y-0');
+                megaMenu.classList.add('translate-y-[60px]');
+                megaMenu.classList.add('invisible');
+                $('.menuClass').removeClass('duration-300');
+            }
+        }
+
+        function handleClickOutside(event) {
+            if (!menuIcon.contains(event.target) && !megaMenu.contains(event.target)) {
+                megaMenu.classList.remove('translate-y-0');
+                megaMenu.classList.add('translate-y-[60px]');
+                megaMenu.classList.add('invisible');
+                $('.menuClass').removeClass('duration-300');
+            }
+        }
+
+        menuIcon.addEventListener('click', function() {
+            toggleMegaMenu();
+        });
+
+        // Add an event listener for clicks outside the menu
+        document.addEventListener('click', handleClickOutside);
+
+        // Optional: If you want to close the mega menu when resizing the window, uncomment the following:
+        // window.addEventListener('resize', function() {
+        //     if (window.innerWidth >= 768) { // Assuming md breakpoint is 768px
+        //         megaMenu.classList.remove('translate-y-0', 'invisible');
+        //         megaMenu.classList.add('translate-y-[60px]');
+        //     }
+        // });
+    });
+</script>
+<?php /**PATH D:\DevelopingTeam\laragon\www\nutundesh24\resources\views/frontend/bn/common/header.blade.php ENDPATH**/ ?>
