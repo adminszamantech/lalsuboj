@@ -12,31 +12,8 @@
 
     </div>
     <div class="grid grid-cols-12 gap-8 py-4 border-b border-custom-bc dark:border-gray-600">
-        <!-- Left Area (Next 3 contents) -->
-        <div class="col-span-12 md:col-span-4 relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
-            <div class="flex flex-col gap-8">
-                
-                <?php ($entertainmentLeftContents = $entertainmentContents->slice(1, 3)->values()); ?>
-
-                <?php if(count($entertainmentLeftContents) > 0): ?>
-                    <?php $__currentLoopData = $entertainmentLeftContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $enterLeftContent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a href="<?php echo e(postURL($enterLeftContent->category->cat_slug, $enterLeftContent->content_id)); ?>" class="grid grid-cols-2 gap-2 hover:no-underline focus:no-underline group relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-[1px] after:border-b after:border-custom-bc last:after:border-0 after:dark:border-gray-600">
-                            <div>
-                                <h2 class="post-title m-0 py-2 text-base-color group-hover:text-base-color-hover dark:text-slate-300"><strong><?php echo e($enterLeftContent->content_heading); ?></strong></h2>
-                                <p class="lead-short-text text-black dark:text-gray-400"><?php echo fGetWord(fFormatString($enterLeftContent->content_details), 8); ?></p>
-
-                            </div>
-                            <div class="overflow-hidden">
-                                <img class="w-full group-hover:scale-110 duration-500" src="<?php echo e($enterLeftContent->img_bg_path ? asset(config('appconfig.contentImagePath').$enterLeftContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
-                            </div>
-                        </a>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                <?php endif; ?>
-            </div>
-        </div>
-
-        <!-- Middle Area (First content) -->
-        <div class="col-span-12 md:col-span-4 border-t border-b py-4 md:border-t-0 md:border-b-0 md:py-0 border-custom-bc dark:border-gray-600 relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
+         <!-- Middle Area (First content) -->
+         <div class="col-span-12 md:col-span-4 border-t border-b py-4 md:border-t-0 md:border-b-0 md:py-0 border-custom-bc dark:border-gray-600 relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
             <?php ($entertainMiddleContent = $entertainmentContents[0]); ?>
             <?php if($entertainMiddleContent): ?>
                 <a href="<?php echo e(postURL($entertainMiddleContent->category->cat_slug, $entertainMiddleContent->content_id)); ?>" class="flex flex-col gap-2 hover:no-underline focus:no-underline group">
@@ -50,21 +27,50 @@
                 </a>
             <?php endif; ?>
         </div>
+        
+        <!-- Left Area (Next 3 contents) -->
+        <div class="col-span-12 md:col-span-4 relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
+            <div class="flex flex-col gap-2 grid grid-cols-2 gap-2">
+                
+                <?php ($entertainmentLeftContents = $entertainmentContents->slice(1, 4)->values()); ?>
+
+                <?php if(count($entertainmentLeftContents) > 0): ?>
+                    <?php $__currentLoopData = $entertainmentLeftContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $enterLeftContent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <a href="<?php echo e(postURL($enterLeftContent->category->cat_slug, $enterLeftContent->content_id)); ?>" class="grid grid-cols-1 gap-2 hover:no-underline focus:no-underline group relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-[1px] after:dark:border-gray-600">
+                            <div class="overflow-hidden">
+                                <img class="w-full group-hover:scale-110 duration-500" src="<?php echo e($enterLeftContent->img_bg_path ? asset(config('appconfig.contentImagePath').$enterLeftContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
+                            </div>
+
+                            <div>
+                                <h2 class="post-title m-0 py-2 text-base-color group-hover:text-base-color-hover dark:text-slate-300"><strong><?php echo e($enterLeftContent->content_heading); ?></strong></h2>
+                                <p class="lead-short-text text-black dark:text-gray-400"><?php echo fGetWord(fFormatString($enterLeftContent->content_details), 8); ?></p>
+
+                            </div>
+                          
+                        </a>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
+            </div>
+        </div>
+
+       
 
         <!-- Right Area (Next 3 contents) -->
         <div class="col-span-12 md:col-span-4">
-            <div class="flex flex-col gap-8">
-                <?php ($entertainRightContents = $entertainmentContents->slice(4, 3)->values()); ?>
+            <div class="flex flex-col gap-2 grid grid-cols-2 gap-2">
+                <?php ($entertainRightContents = $entertainmentContents->slice(5, 4)->values()); ?>
                 <?php if(count($entertainRightContents) > 0): ?>
                     <?php $__currentLoopData = $entertainRightContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $entertainRightContent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a href="<?php echo e(postURL($entertainRightContent->category->cat_slug, $entertainRightContent->content_id)); ?>" class="grid grid-cols-2 gap-2 hover:no-underline focus:no-underline group relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-[1px] after:border-b after:border-custom-bc last:after:border-0 after:dark:border-gray-600">
+                        <a href="<?php echo e(postURL($entertainRightContent->category->cat_slug, $entertainRightContent->content_id)); ?>" class="grid grid-cols-1 gap-2 hover:no-underline focus:no-underline group relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-[1px] after:dark:border-gray-600">
+                            
+                            <div class="overflow-hidden">
+                                <img class="w-full group-hover:scale-110 duration-500" src="<?php echo e($entertainRightContent->img_bg_path ? asset(config('appconfig.contentImagePath').$entertainRightContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
+                            </div>
                             <div>
                                 <h2 class="post-title m-0 py-2 text-base-color group-hover:text-base-color-hover dark:text-slate-300"><strong><?php echo e($entertainRightContent->content_heading); ?></strong></h2>
                                 <p class="lead-short-text text-black dark:text-gray-400"><?php echo fGetWord(fFormatString($entertainRightContent->content_details), 8); ?></p>
                             </div>
-                            <div class="overflow-hidden">
-                                <img class="w-full group-hover:scale-110 duration-500" src="<?php echo e($entertainRightContent->img_bg_path ? asset(config('appconfig.contentImagePath').$entertainRightContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
-                            </div>
+                           
                         </a>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php endif; ?>

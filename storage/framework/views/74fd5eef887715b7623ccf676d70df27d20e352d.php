@@ -12,28 +12,8 @@
 
     </div>
     <div class="grid grid-cols-12 gap-8 py-4 border-b border-custom-bc dark:border-gray-600">
-        <!-- Left Area (Next 3 contents) -->
-        <div class="col-span-12 md:col-span-4 relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
-            <div class="flex flex-col gap-8">
-                
-                <?php ($sportsLeftContents = $sportsContents->slice(1, 3)->values()); ?>
-
-                <?php if(count($sportsLeftContents) > 0): ?>
-                    <?php $__currentLoopData = $sportsLeftContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sportLeftContent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a href="<?php echo e(postURL($sportLeftContent->category->cat_slug, $sportLeftContent->content_id)); ?>" class="grid grid-cols-2 gap-2 hover:no-underline focus:no-underline group relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-[1px] after:border-b after:border-custom-bc last:after:border-0 after:dark:border-gray-600">
-                            <div>
-                                <h2 class="post-title m-0 py-2 text-base-color group-hover:text-base-color-hover dark:text-slate-300"><strong><?php echo e($sportLeftContent->content_heading); ?></strong></h2>
-                                <p class="lead-short-text text-black dark:text-gray-400"><?php echo fGetWord(fFormatString($sportLeftContent->content_details), 8); ?></p>
-                            </div>
-                            <div class="overflow-hidden">
-                                <img class="w-full group-hover:scale-110 duration-500" src="<?php echo e($sportLeftContent->img_bg_path ? asset(config('appconfig.contentImagePath').$sportLeftContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
-                            </div>
-                        </a>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                <?php endif; ?>
-            </div>
-        </div>
-
+        
+        
         <!-- Middle Area (First content) -->
         <div class="col-span-12 md:col-span-4 border-t border-b py-4 md:border-t-0 md:border-b-0 md:py-0 border-custom-bc dark:border-gray-600 relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
             <?php ($sportsMiddleContent = $sportsContents[0]); ?>
@@ -49,21 +29,46 @@
                 </a>
             <?php endif; ?>
         </div>
+        <!-- Left Area (Next 3 contents) -->
+        <div class="col-span-12 md:col-span-4 relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
+            <div class="flex flex-col gap-2 grid grid-cols-2 gap-2">
+                
+                <?php ($sportsLeftContents = $sportsContents->slice(1, 4)->values()); ?>
+
+                <?php if(count($sportsLeftContents) > 0): ?>
+                    <?php $__currentLoopData = $sportsLeftContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sportLeftContent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <a href="<?php echo e(postURL($sportLeftContent->category->cat_slug, $sportLeftContent->content_id)); ?>" class="grid grid-cols-1 gap-2 hover:no-underline focus:no-underline group relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-[1px]  after:dark:border-gray-600">
+                            <div class="overflow-hidden">
+                                <img class="w-full group-hover:scale-110 duration-500" src="<?php echo e($sportLeftContent->img_bg_path ? asset(config('appconfig.contentImagePath').$sportLeftContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
+                            </div>
+                            <div>
+                                <h2 class="post-title m-0 py-2 text-base-color group-hover:text-base-color-hover dark:text-slate-300"><strong><?php echo e($sportLeftContent->content_heading); ?></strong></h2>
+                                <p class="lead-short-text text-black dark:text-gray-400"><?php echo fGetWord(fFormatString($sportLeftContent->content_details), 8); ?></p>
+                            </div>
+                            
+                        </a>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        
 
         <!-- Right Area (Next 3 contents) -->
         <div class="col-span-12 md:col-span-4">
-            <div class="flex flex-col gap-8">
-                <?php ($sportsRightContents = $sportsContents->slice(4, 3)->values()); ?>
+            <div class="flex flex-col gap-2 grid grid-cols-2 gap-2">
+                <?php ($sportsRightContents = $sportsContents->slice(5, 4)->values()); ?>
                 <?php if(count($sportsRightContents) > 0): ?>
                     <?php $__currentLoopData = $sportsRightContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sportRightContent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a href="<?php echo e(postURL($sportRightContent->category->cat_slug, $sportRightContent->content_id)); ?>" class="grid grid-cols-2 gap-2 hover:no-underline focus:no-underline group relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-[1px] after:border-b after:border-custom-bc last:after:border-0 after:dark:border-gray-600">
+                        <a href="<?php echo e(postURL($sportRightContent->category->cat_slug, $sportRightContent->content_id)); ?>" class="grid grid-cols-1 gap-2 hover:no-underline focus:no-underline group relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-[1px] after:dark:border-gray-600">
+                            <div class="overflow-hidden">
+                                <img class="w-full group-hover:scale-110 duration-500" src="<?php echo e($sportRightContent->img_bg_path ? asset(config('appconfig.contentImagePath').$sportRightContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
+                            </div>
                             <div>
                                 <h2 class="post-title m-0 py-2 text-base-color group-hover:text-base-color-hover dark:text-slate-300"><strong><?php echo e($sportRightContent->content_heading); ?></strong></h2>
                                 <p class="lead-short-text text-black dark:text-gray-400"><?php echo fGetWord(fFormatString($sportRightContent->content_details), 8); ?></p>
                             </div>
-                            <div class="overflow-hidden">
-                                <img class="w-full group-hover:scale-110 duration-500" src="<?php echo e($sportRightContent->img_bg_path ? asset(config('appconfig.contentImagePath').$sportRightContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
-                            </div>
+                           
                         </a>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php endif; ?>

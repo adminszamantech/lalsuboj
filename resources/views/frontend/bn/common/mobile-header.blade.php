@@ -28,16 +28,22 @@
                         <img class="w-[200px]" src="{{ asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->logo) }}" alt="{{ Cache::get('bnSiteSettings')->site_name }}">
                     </a>
                 </div>
-                {{-- <div class="dark_light_mode">
-                    <div class="flex flex-row items-center bg-gray-200 dark:bg-black rounded-full gap-2">
-                        <div class="bg-white dark:bg-transparent rounded-full px-1 py-1 cursor-pointer hidden mobile_light_mode_btn" id="mobile_light_mode">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-4 w-4 dark:text-white text-red-500" role="button" title="Light Mode"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
-                        </div>
-                        <div class="rounded-full dark:bg-gray-200 px-1 py-1 cursor-pointer mobile_dark_mode_btn" id="mobile_dark_mode">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-4 w-4 dark:text-red-500 text-black" role="button" title="Dark Mode"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                        </div>
+                <div class="relative">
+                    <div onclick="searchBox()" class="search_btn dark:text-white cursor-pointer z-50">
+                        <i class="fa fa-search"></i>
                     </div>
-                </div> --}}
+                    <div onclick="searchBox()" class="search_close dark:text-white text-xl cursor-pointer hidden z-50">
+                        <i class="fa fa-close"></i>
+                    </div>
+                    <div class="search_box absolute right-6 -top-[7px] hidden">
+                       <div class="flex flex-row items-center">
+                           <input id="search_input" type="text" class="px-4 flex w-[300px] focus:outline-none py-2 border-custom-bc dark:text-slate-300 dark:bg-black dark:border-gray-600" placeholder="অনুসন্ধান করুন">
+                           <div onclick="searchNews()" class="cursor-pointer searchbtn border-custom-bc dark:border-gray-600 px-4 py-2 bg-gray-400">
+                               <i class="fa fa-search"></i>
+                           </div>
+                       </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -63,8 +69,22 @@
                     , {{ $mobileBnDate[0]." ".$mobileBnDate[1]." ".$mobileBnDate[2] }}
                 </div>
             </div>
-            <div class="social_icons py-2 border-t border-b border-custom-bc dark:border-gray-600">
-                <div class="flex gap-[50px] justify-center items-center">
+            
+        </div>
+        <!-- Close button for menu -->
+        <div class="mobile_menus px-8 mt-15 pt-0 pb-4 h-screen overflow-y-auto">
+            <div class="grid grid-cols-2 gap-5">
+                @php $mobile_menus = bnHeaderCategory() @endphp
+                <a class="dark:text-slate-300 border-b pb-2 border-custom-bc dark:border-gray-600 text-[16px] font-semibold" href="{{ url('/latest/news') }}">সর্বশেষ</a>
+                @foreach($mobile_menus as $mobile_menu)
+                    <a class="dark:text-slate-300 border-b pb-2 border-custom-bc dark:border-gray-600 text-[16px] font-semibold" href="{{ url('/'.$mobile_menu->cat_slug) }}">{{ $mobile_menu->cat_name_bn }}</a>
+                @endforeach
+            </div>
+            <!-- Add more menu items as needed -->
+
+            <div class="social_icons mt-4 py-2  dark:border-gray-600">
+                <h4 class="mt-2 mb-3"><b>অনুসরণ করুন</b></h4>
+                <div class="flex gap-5">
                     @if(Cache::get('bnSiteSettings')->facebook)
                         <a class="group" href="{{ Cache::get('bnSiteSettings')->facebook }}" target="_blank">
                             <div style="background: #0866ff; color:white; border-radius:20px" class="w-8 h-8 flex justify-center items-center rounded-sm group-hover:border-black duration-300 menuClass ease-out dark:group-hover:border-white">
@@ -119,17 +139,6 @@
                     @endif
                 </div>
             </div>
-        </div>
-        <!-- Close button for menu -->
-        <div class="mobile_menus px-8 mt-36 pt-0 pb-4 h-screen overflow-y-auto">
-            <div class="grid grid-cols-2 gap-5">
-                @php $mobile_menus = bnHeaderCategory() @endphp
-                <a class="dark:text-slate-300 border-b pb-2 border-custom-bc dark:border-gray-600 text-[16px] font-semibold" href="{{ url('/latest/news') }}">সর্বশেষ</a>
-                @foreach($mobile_menus as $mobile_menu)
-                    <a class="dark:text-slate-300 border-b pb-2 border-custom-bc dark:border-gray-600 text-[16px] font-semibold" href="{{ url('/'.$mobile_menu->cat_slug) }}">{{ $mobile_menu->cat_name_bn }}</a>
-                @endforeach
-            </div>
-            <!-- Add more menu items as needed -->
         </div>
     </div>
 </div>
@@ -189,5 +198,17 @@
             });
         }
     });
+
+
+   
+    // Search News
+    function searchNews(){
+        let keyword = $('#search_input').val()
+        if (keyword.length > 0){
+            window.location.href = "{{ url('/search?q=') }}"+keyword
+        }
+    }
+   
+
 
 </script>

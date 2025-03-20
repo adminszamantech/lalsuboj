@@ -81,13 +81,11 @@ class BnFrontendController extends Controller
 
         // Economy Content
         $economyContents = (new BnContentService())->getPositionContent(null, 3);
-// return $economyContents;
         // International Content
         $internationalContents = (new BnContentService())->getPositionContent(null, 15);
 
         // Sports Content
         $sportsContents = (new BnContentService())->getPositionContent(null, 5);
-
         // Health Content
         $healthContents = BnHelperController::getCategoryContent(10, 5);
 
