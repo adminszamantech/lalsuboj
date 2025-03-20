@@ -1,0 +1,5 @@
+<a href="{{ fDesktopURL($post->content_id, $post->category->cat_slug, ($post->subcategory->subcat_slug ?? null), $post->content_type) }}" class="col-span-12 md:col-span-6 relative group after:content-[''] after:absolute after:top-0 after:-right-3 after:w-[1px] after:h-full after:border-r last:after:border-0 after:border-custom-bc after:dark:border-gray-600">
+    <div class="grid grid-cols-12 gap-2"><div class="col-span-7"><h2 class="text-[19px] text-base-color dark:text-slate-300 group-hover:text-base-color-hover leading-[1.68rem]">{{ $post->content_heading }}</h2></div><div class="col-span-5 overflow-hidden"><img class="w-full group-hover:scale-110 duration-500" src="{{ $post->img_bg_path ? asset(config('appconfig.contentImagePath').$post->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image) }}" alt="{{ $post->content_heading }}"></div></div><div class="w-full h-[1px] bg-custom-bc dark:bg-gray-600 absolute -bottom-3 left-0"></div>
+    </a>
+
+

