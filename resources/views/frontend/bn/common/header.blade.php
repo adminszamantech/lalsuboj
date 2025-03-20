@@ -71,17 +71,6 @@
                 <div class="flex flex-row items-center">
                     <!-- Desktop Menu -->
                     
-                   
-                    {{-- <nav class="flex gap-3 font-semibold space-x-6 dark:text-slate-100 text-[15px]" style="flex-wrap: wrap;">
-                        <a href="{{ url('/latest/news') }}" class="{{ request()->is('latest/news')  ? 'active' : '' }} relative after:absolute duration-200 after:top-[13px] after:ml-1 hover:text-base-color-hover hover:after:content-['⮞'] py-3">সর্বশেষ</a>
-                        @php
-                            $categories = bnHeaderToCategory();
-                        @endphp
-                        @foreach($categories as $category)
-                            <a href="{{ url('/'.$category->cat_slug) }}" class="relative after:absolute duration-200 after:top-[13px] after:ml-1 hover:text-base-color-hover py-3">{{ $category->cat_name_bn }}</a>
-                        @endforeach
-                    </nav>  --}}
-
                     <nav class="font-semibold py-4 dark:text-slate-100 text-[25px]">
                         <a href="{{ url('/latest/news') }}" style="padding-right:30px;" class="{{ request()->is('latest/news') ? 'active' : '' }} relative after:absolute duration-200 after:top-[13px] after:ml-1 hover:text-base-color-hover py-3">সর্বশেষ</a>
                         @php
@@ -111,16 +100,6 @@
                            </div>
                         </div>
                     </div>
-                    {{-- <div class="dark_light_mode">
-                        <div class="flex flex-row items-center bg-gray-200 dark:bg-black rounded-full gap-2">
-                            <div class="bg-white dark:bg-transparent rounded-full px-1 py-1 cursor-pointer hidden mobile_light_mode_btn" id="mobile_light_mode">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-4 w-4 dark:text-white text-red-500" role="button" title="Light Mode"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
-                            </div>
-                            <div class="rounded-full dark:bg-gray-200 px-1 py-1 cursor-pointer mobile_dark_mode_btn" id="mobile_dark_mode">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-4 w-4 dark:text-red-500 text-black" role="button" title="Dark Mode"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div id="menu-icon" class="menu_icon text-xl cursor-pointer dark:text-white">
                         <i class="fa fa-bars"></i>
                     </div>

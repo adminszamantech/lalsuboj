@@ -72,9 +72,6 @@
                 <div class="flex flex-row items-center">
                     <!-- Desktop Menu -->
                     
-                   
-                    
-
                     <nav class="font-semibold py-4 dark:text-slate-100 text-[25px]">
                         <a href="<?php echo e(url('/latest/news')); ?>" style="padding-right:30px;" class="<?php echo e(request()->is('latest/news') ? 'active' : ''); ?> relative after:absolute duration-200 after:top-[13px] after:ml-1 hover:text-base-color-hover py-3">সর্বশেষ</a>
                         <?php
@@ -104,7 +101,6 @@
                            </div>
                         </div>
                     </div>
-                    
                     <div id="menu-icon" class="menu_icon text-xl cursor-pointer dark:text-white">
                         <i class="fa fa-bars"></i>
                     </div>

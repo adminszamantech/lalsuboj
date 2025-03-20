@@ -17,13 +17,14 @@
             <div class="col-span-9 border-b md:border-b-0 border-custom-bc dark:border-gray-600 pb-4 md:pb-0 relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
                 <!-- First Lead Post --->
                 <a href="{{ postURL($nationalContent->category->cat_slug, $nationalContent->content_id) }}" class="grid grid-cols-12 gap-4  h-full hover:no-underline focus:no-underline group group">
+                    <div class="col-span-12 md:col-span-7 overflow-hidden">
+                        <img class="h-full w-full group-hover:scale-110 duration-500" src="{{ $nationalContent->img_bg_path ? asset(config('appconfig.contentImagePath').$nationalContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image) }}" alt="">
+                    </div>
                     <div class="col-span-12 md:col-span-5 flex flex-col gap-6">
                         <h2 class="category-heading-text text-base-color group-hover:text-base-color-hover dark:text-slate-300"><strong>{{ $nationalContent->content_heading }}</strong></h2>
                         <p class="lead-short-text text-[#555555] dark:text-gray-400">{!! fGetWord(fFormatString($nationalContent->content_details), 50) !!}</p>
                     </div>
-                    <div class="col-span-12 md:col-span-7 overflow-hidden">
-                        <img class="h-full w-full group-hover:scale-110 duration-500" src="{{ $nationalContent->img_bg_path ? asset(config('appconfig.contentImagePath').$nationalContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image) }}" alt="">
-                    </div>
+                   
                 </a>
                 <!-- First Lead Post --->
             </div>

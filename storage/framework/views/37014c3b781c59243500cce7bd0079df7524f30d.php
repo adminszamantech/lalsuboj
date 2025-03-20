@@ -135,12 +135,12 @@
                     </div>
                 <?php endif; ?>
                 <?php if($educationContents->count()): ?>
-                    <div>
+                    <div class="relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
                         <?php echo $__env->make('frontend.bn.partials.new_education', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                 <?php endif; ?>
                 <?php if($lifestyleContents->count()): ?>
-                    <div class="relative md:after:content-[''] md:after:absolute after:top-0 after:-right-4 after:w-[1px] after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
+                    <div class="">
                         <?php echo $__env->make('frontend.bn.partials.new_lifestyle', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                 <?php endif; ?>
