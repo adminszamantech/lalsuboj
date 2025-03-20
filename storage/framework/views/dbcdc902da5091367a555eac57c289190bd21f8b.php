@@ -76,7 +76,7 @@
             
         </div>
         <!-- Close button for menu -->
-        <div class="mobile_menus px-8 mt-15 pt-0 pb-4 h-screen overflow-y-auto">
+        <div class="mobile_menus px-8 pt-0 pb-4 h-screen overflow-y-auto" style="margin-top:95px !important">
             <div class="grid grid-cols-2 gap-5">
                 <?php $mobile_menus = bnHeaderCategory() ?>
                 <a class="dark:text-slate-300 border-b pb-2 border-custom-bc dark:border-gray-600 text-[16px] font-semibold" href="<?php echo e(url('/latest/news')); ?>">সর্বশেষ</a>
