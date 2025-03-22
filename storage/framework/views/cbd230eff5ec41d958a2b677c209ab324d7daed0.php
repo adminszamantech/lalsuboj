@@ -3,6 +3,7 @@
         <!-- First & Second Lead Post --->
 
         <?php ($spTopContent = $specialTopContents->shift()); ?>
+      
         <div class="grid grid-cols-1 md:grid-cols-12 md:gap-8 pb-4 border-b border-custom-bc dark:border-gray-600 bg-[#eff5f4]">
             <div
                 class="col-span-12 md:relative md:after:content-[''] md:after:absolute md:after:top-0 md:after:-right-4 md:after:w-[1px] md:after:h-full  after:dark:border-gray-600">
@@ -27,13 +28,13 @@
                 </a>
                 <!-- First Lead Post --->
             </div>
-            
+           
 
         </div>
         <!--/ First & Second Lead Post --->
 
         <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-8 pt-4 pb-4 border-b border-custom-bc dark:border-gray-600">
-            <?php ($spBottomFourContents = $specialTopContents->splice(1, 4)); ?>
+            <?php ($spBottomFourContents = $specialTopContents->splice(0, 4)); ?>
             <?php $__currentLoopData = $spBottomFourContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $spBottomFourContent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($spBottomFourContent): ?>
                     <a href="<?php echo e(postURL($spBottomFourContent->category->cat_slug, $spBottomFourContent->content_id)); ?>"
@@ -57,7 +58,7 @@
 
         <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-8 pt-4">
 
-            <?php ($spBottomMoreFourContents = $specialTopContents->splice(1, 4)); ?>
+            <?php ($spBottomMoreFourContents = $specialTopContents->splice(0, 4)); ?>
             <?php $__currentLoopData = $spBottomMoreFourContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $spBottomMoreFourContent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($spBottomMoreFourContent): ?>
                     <a href="<?php echo e(postURL($spBottomMoreFourContent->category->cat_slug, $spBottomMoreFourContent->content_id)); ?>"

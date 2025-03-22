@@ -32,7 +32,7 @@
         <!--/ First & Second Lead Post --->
 
         <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-8 pt-4 pb-4 md:border-b border-custom-bc dark:border-gray-600">
-            <?php ($sportBtContents = $saradeshContents->splice(1,4)); ?>
+            <?php ($sportBtContents = $saradeshContents->splice(0,4)); ?>
             <?php $__currentLoopData = $sportBtContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sportBottomCont): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($sportBottomCont): ?>
                     <a href="<?php echo e(postURL($sportBottomCont->category->cat_slug, $sportBottomCont->content_id)); ?>" class="flex flex-col gap-2 hover:no-underline focus:no-underline group group relative md:after:content-[''] md:after:absolute after:top-0 after:left-4 md:after:w-full md:after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600 mb-4 md:mb-0 border-b md:border-b-0 border-custom-bc dark:border-gray-600">

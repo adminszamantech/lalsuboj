@@ -34,7 +34,7 @@
         <!--/ First & Second Lead Post --->
 
         <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-8 pt-4 pb-4 md:border-b border-b-0 border-custom-bc dark:border-gray-600">
-            <?php ($politicsBtContents = $politicsContents->splice(1,6)); ?>
+            <?php ($politicsBtContents = $politicsContents->splice(0,4)); ?>
 
             <?php $__currentLoopData = $politicsBtContents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ntBottomCont): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($ntBottomCont): ?>
