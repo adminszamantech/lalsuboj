@@ -21,7 +21,7 @@
                     <div class="col-span-12 md:col-span-7 overflow-hidden">
                         <img class="h-full w-full group-hover:scale-110 duration-500" src="<?php echo e($politicsContent->img_bg_path ? asset(config('appconfig.contentImagePath').$politicsContent->img_bg_path) : asset(config('appconfig.commonImagePath').Cache::get('bnSiteSettings')->og_image)); ?>" alt="">
                     </div>
-                    <div class="col-span-12 md:col-span-5 flex flex-col gap-6 items-center justify-center">
+                    <div class="col-span-12 md:col-span-5 flex flex-col gap-6 justify-center">
                         <h2 class="category-heading-text text-base-color group-hover:text-base-color-hover dark:text-slate-300"><strong><?php echo e($politicsContent->content_heading); ?></strong></h2>
                         <p class="lead-short-text text-[#555555] dark:text-gray-400"><?php echo fGetWord(fFormatString($politicsContent->content_details), 70); ?></p>
                     </div>
