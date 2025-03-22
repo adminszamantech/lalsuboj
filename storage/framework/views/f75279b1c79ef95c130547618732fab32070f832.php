@@ -12,8 +12,9 @@
                         <p class="text-[color:var(--link-color)] text-xl dark:text-slate-300 text-center text-sm">
                              <strong> সম্পাদক ও প্রকাশক: <?php echo e(Cache::get('bnSiteSettings')->editor_meta); ?></strong>
                         </p>
-                        <p class="text-[color:var(--link-color)] text-xl dark:text-slate-300 text-center text-sm">
-                            <strong><?php echo e(Cache::get('bnSiteSettings')->address); ?></strong>
+                        <p class="text-[color:var(--link-color)] text-xl dark:text-slate-300 text-center text-sm" style="font-size: 17px;">
+                            <?php echo e(Cache::get('bnSiteSettings')->address); ?>
+
                         </p>
                         
                     </div>

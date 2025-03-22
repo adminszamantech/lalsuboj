@@ -3,7 +3,7 @@
         <!-- First & Second Lead Post --->
 
         <?php ($spTopContent = $specialTopContents->shift()); ?>
-        <div class="grid grid-cols-1 md:grid-cols-12 md:gap-8 pb-4 border-b border-custom-bc dark:border-gray-600">
+        <div class="grid grid-cols-1 md:grid-cols-12 md:gap-8 pb-4 border-b border-custom-bc dark:border-gray-600 bg-[#eff5f4]">
             <div
                 class="col-span-12 md:relative md:after:content-[''] md:after:absolute md:after:top-0 md:after:-right-4 md:after:w-[1px] md:after:h-full  after:dark:border-gray-600">
                 <!-- First Lead Post --->
