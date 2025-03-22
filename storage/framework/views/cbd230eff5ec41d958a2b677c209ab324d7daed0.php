@@ -4,11 +4,8 @@
 
         <?php ($spTopContent = $specialTopContents->shift()); ?>
         <div class="grid grid-cols-1 md:grid-cols-12 md:gap-8 pb-4 border-b border-custom-bc dark:border-gray-600">
-
-           
-
             <div
-                class="col-span-9 md:relative md:after:content-[''] md:after:absolute md:after:top-0 md:after:-right-4 md:after:w-[1px] md:after:h-full md:after:border-r after:border-custom-bc after:dark:border-gray-600">
+                class="col-span-12 md:relative md:after:content-[''] md:after:absolute md:after:top-0 md:after:-right-4 md:after:w-[1px] md:after:h-full  after:dark:border-gray-600">
                 <!-- First Lead Post --->
                 <a href="<?php echo e(postURL($spTopContent->category->cat_slug, $spTopContent->content_id)); ?>"
                     class="grid grid-cols-12 h-full hover:no-underline focus:no-underline group">
@@ -30,28 +27,7 @@
                 </a>
                 <!-- First Lead Post --->
             </div>
-            <div class="col-span-12 md:col-span-3 mt-6 md:mt-0 ">
-                <!-- Second Lead Post --->
-                <?php if($specialTopContents[0]): ?>
-                    <a href="<?php echo e(postURL($specialTopContents[0]->category->cat_slug, $specialTopContents[0]->content_id)); ?>"
-                        class="flex flex-col gap-2 hover:no-underline focus:no-underline group relative">
-                        <div class="overflow-hidden">
-                            <img class="w-full group-hover:scale-110 duration-500"
-                                src="<?php echo e($specialTopContents[0]->img_bg_path ? asset(config('appconfig.contentImagePath') . $specialTopContents[0]->img_bg_path) : asset(config('appconfig.commonImagePath') . Cache::get('bnSiteSettings')->og_image)); ?>"
-                                alt="">
-                        </div>
-                        <div>
-                            <span
-                                class="lead_category text-red-500 font-semibold text-base-color-2 text-base"><?php echo e($specialTopContents[0]->category->cat_name_bn); ?></span>
-                            <h2
-                                class="post-title m-0 py-2 text-base-color group-hover:text-base-color-hover dark:text-slate-300">
-                                <strong><?php echo e($specialTopContents[0]->content_heading); ?></strong></h2>
-                            <p class="lead-short-text text-black dark:text-gray-400"><?php echo fGetWord(fFormatString($specialTopContents[0]->content_details), 8); ?></p>
-                        </div>
-                    </a>
-                <?php endif; ?>
-                <!--/ Second Lead Post --->
-            </div>
+            
 
         </div>
         <!--/ First & Second Lead Post --->
@@ -68,8 +44,7 @@
                                 alt="">
                         </div>
                         <div>
-                            <span
-                                class="lead_category text-red-500 text-base-color-2 text-base"><strong><?php echo e($spBottomFourContent->category->cat_name_bn); ?></strong></span>
+                            <span class="lead_category text-red-500 text-base-color-2 text-base"><strong><?php echo e($spBottomFourContent->category->cat_name_bn); ?></strong></span>
                             <h2
                                 class="post-title m-0 py-2 text-base-color group-hover:text-base-color-hover dark:text-slate-300">
                                 <strong><?php echo e($spBottomFourContent->content_heading); ?></strong></h2>

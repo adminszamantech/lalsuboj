@@ -10,9 +10,12 @@
                          @if(Cache::get('bnSiteSettings')->editor_meta)
                     <div>
                         <p class="text-[color:var(--link-color)] text-xl dark:text-slate-300 text-center text-sm">
-                            সম্পাদক ও প্রকাশক: <strong>{{ Cache::get('bnSiteSettings')->editor_meta }}</strong>
+                             <strong> সম্পাদক ও প্রকাশক: {{ Cache::get('bnSiteSettings')->editor_meta }}</strong>
                         </p>
-                        {{-- <p class="text-[color:var(--link-color)] text-xl dark:text-slate-300">সম্পাদক: <strong>{{ Cache::get('bnSiteSettings')->editor_meta }}</strong></p> --}}
+                        <p class="text-[color:var(--link-color)] text-xl dark:text-slate-300 text-center text-sm">
+                            <strong>{{ Cache::get('bnSiteSettings')->address }}</strong>
+                        </p>
+                        
                     </div>
                     @endif
                     </div>
