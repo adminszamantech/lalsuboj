@@ -214,8 +214,6 @@ imagedestroy($logo);
         $countries = Country::where('deletable', 1)->orderBy('country_name')->get();
         $districts = District::where('deletable', 1)->orderBy('district_name')->get();
         $mis_reporters = MisUser::where('user_type', 1)->where('deletable', 1)->get();
-//        $tag_letters = DB::select('select DISTINCT(SUBSTR(tag_name, 1, 1)) AS indexChar, ROW_NUMBER() OVER( ORDER BY indexChar asc) as UID from bn_tags group by indexChar');
-        //return $categories;
         $fix_position = BnFixedPosition::first();
         return view('backend.bn.content.content_create', compact('authors', 'fix_position', 'categories', 'specialCategories', 'countries', 'districts', 'mis_reporters'));
     }
@@ -223,125 +221,9 @@ imagedestroy($logo);
     public function store(Request $request)
     {
 
-
-
-//         $uniqueCategories = DB::connection('wordpress')
-//         ->table('wpfa_terms as t')
-//         ->select('t.name')
-//         ->join('wpfa_term_taxonomy as tt', 't.term_id', '=', 'tt.term_id')
-//         ->join('wpfa_term_relationships as tr', 'tt.term_taxonomy_id', '=', 'tr.term_taxonomy_id')
-//         ->join('wpfa_posts as p', 'tr.object_id', '=', 'p.ID')
-//         ->where('tt.taxonomy', 'category')
-//         ->where('p.post_type', 'post')
-//         ->distinct()
-//         ->pluck('t.name');
-    
-// return     $uniqueCategories;
-
-//         $wordpressData = DB::connection('wordpress')
-//         ->table('wpfa_posts as p')
-//         ->select(
-//             'p.ID',
-//             'p.post_title',
-//             'p.post_content',
-//             DB::raw('GROUP_CONCAT(DISTINCT t.name SEPARATOR ", ") as categories'),
-//             'img.guid as featured_image',
-//             'p.post_date'
-//         )
-//         ->leftJoin('wpfa_term_relationships as tr', 'p.ID', '=', 'tr.object_id')
-//         ->leftJoin('wpfa_term_taxonomy as tt', 'tr.term_taxonomy_id', '=', 'tt.term_taxonomy_id')
-//         ->leftJoin('wpfa_terms as t', 'tt.term_id', '=', 't.term_id')
-//         ->leftJoin('wpfa_postmeta as pm', function ($join) {
-//             $join->on('p.ID', '=', 'pm.post_id')
-//                  ->where('pm.meta_key', '_thumbnail_id');
-//         })
-//         ->leftJoin('wpfa_posts as img', 'pm.meta_value', '=', 'img.ID') // Get the featured image
-//         ->where('tt.taxonomy', 'category')
-//         ->where('p.post_type', 'post') // Only fetch blog posts
-//         // ->havingRaw("FIND_IN_SET('রাজনীতি', categories)")
-//         ->groupBy('p.ID', 'p.post_title', 'p.post_content', 'img.guid') // Avoid SQL error
-//         ->orderBy('p.ID', 'DESC')
-       
-//         ->get();
-        
-// return $wordpressData;
-// return 'ok';
-//         foreach ($wordpressData as $data) {
-//             $content = new BnContent();
-            
-//             $oldUrl = $data->featured_image;
-
-//             $search = [
-//                 'https://lalsobuj24.com/wp-content',
-//                 'https://www.lalsobuj24.com/wp-content',
-//                 'http://localhost/newspaper2/wp-content',
-//                 'https://newsportal.szamantech.com/wp-content'
-//             ];
-//             $replace = 'http://nutundesh24.test';
- 
-
-//             if($oldUrl){
-                
-//                 $newUrl = str_replace($search, $replace, $oldUrl);
-              
-//                 $response = Http::timeout(300)->get($newUrl);
-            
-//                 if (!$response->successful()) {
-//                     return $newUrl;
-//                 }
-            
-//                 // Save image with a unique name
-//                 $uniqueFilename = 'image_' . time() . '_' . rand(1000, 9999) . '.jpg';
-//                 $tempPath = storage_path('app/public/' . $uniqueFilename);
-//                 file_put_contents($tempPath, $response->body());
-            
-//                 // Convert to UploadedFile
-//                 $uploadedFile = new UploadedFile(
-//                     $tempPath,
-//                     $uniqueFilename,
-//                     mime_content_type($tempPath),
-//                     null,
-//                     true
-//                 );
-            
-//                 // Process image
-//                 $finalImageBGPath = FileController::imageIntervention(
-//                     $uploadedFile,
-//                     config('appconfig.contentImagePath'),
-//                     750,
-//                     390
-//                 );
-//                 $content->img_bg_path = $finalImageBGPath;
-//                 $content->img_bg_caption = $data->ImageBGCaption ?? '';
-//                 $content->og_image = "/media/content/images/ogimages/" . $uniqueFilename . ".png";
-//             }
-        
-            
-        
-//             // Save to database
-            
-//             $content->cat_id = 14;
-//             $content->content_heading = $data->post_title;
-//             $content->content_details = $data->post_content;
-//             $content->uploader_id = 38;
-//             $content->country_id = 19;
-//             $content->upozilla_id = 1;
-//             $content->created_at = $data->post_date;
-//             $content->save();
-//         }
-        
-
-// return 'submit';
-
-
-
         $this->validate($request, [
             'newsHeading' => 'required',
-//            'metaKeywords' => 'required',
-//            'briefNews' => 'required',
             'detailsNews' => 'required',
-            //            'largeImage' => 'mimes:jpeg,jpg,png,gif|dimensions:width=750,height=390|max:300',
-//            'largeImage' => 'dimensions:width=750,height=390|max:2048',
             'largeImage' => 'required|max:2048',
         ],[
             'briefNews.required' => "Meta Description is required."
@@ -419,13 +301,6 @@ imagedestroy($logo);
 
         $content->meta_keywords = $request->metaKeywords;
         $content->status = $request->status;
-        // 1=PowerAdmin, 2=NewsAdmin, 3=AdvAdmin, 4=CatAdmin, 5=BN News Admin, 6=EN News Admin
-//        if (auth()->user()->role === 1 || auth()->user()->role === 2){
-//            $content->status = $request->status;
-//        }else{
-//            $content->status = 2;
-//        }
-
         $content->podcast_id = $request->podcastId;
 
         $content->save();
@@ -435,13 +310,6 @@ imagedestroy($logo);
             $type = 'cat';
             $this->setNewsPosition($type, $request->category, $request->categoryPosition, $content->content_id);
         }
-        // Generate HTML
-        //new GenerateHTMLController($request->category, $request->specialCategory, $request->subCategory);
-//        if ($request->specialCategory && $request->specialCategoryPosition) {
-//            $type = 'special_cat';
-//            $this->setNewsPosition($type, $request->specialCategory, $request->specialCategoryPosition, $content->content_id);
-//        }
-
         // Insert news position
         if ($request->category && $request->category_position) {
             $this->setNewsPosition('cat', $request->category, $request->category_position, $content->content_id);
@@ -479,7 +347,6 @@ imagedestroy($logo);
         $countries = Country::where('deletable', 1)->get();
         $districts = District::where('deletable', 1)->get();
         $mis_reporters = MisUser::where('user_type', 1)->where('deletable', 1)->get();
-//        $tag_letters = DB::select('select DISTINCT(SUBSTR(tag_name, 1, 1)) AS indexChar, ROW_NUMBER() OVER( ORDER BY indexChar asc) as UID from bn_tags group by indexChar');
 
         $author_list = [];
         if ($content->author_slugs) {
@@ -498,29 +365,6 @@ imagedestroy($logo);
                 if ($normaltag) $normaltag_list[] = ['id' => $normaltag->tag_slug, 'name' => $normaltag->tag_name];
             }
         }
-
-        /*$peopletag_list = [];
-
-        if ($content->people_tags) {
-            $people_tags = explode(',', $content->people_tags);
-            foreach ($people_tags as $people_tag) {
-                $peopletag = BnTag::select('tag_name', 'tag_slug')->where('tag_slug', $people_tag)->first();
-                if ($peopletag) $peopletag_list[] = ['id' => $peopletag->tag_slug, 'name' => $peopletag->tag_name];
-            }
-        }*/
-
-        /*$placetag_list = [];
-
-        if ($content->place_tags) {
-            $place_tags = explode(',', $content->place_tags);
-            $placetag_list = [];
-            foreach ($place_tags as $place_tag) {
-                $placetag = BnTag::select('tag_name', 'tag_slug')->where('tag_slug', $place_tag)->first();
-                if ($placetag) $placetag_list[] = ['id' => $placetag->tag_slug, 'name' => $placetag->tag_name];
-            }
-        }*/
-        //return $categories;
-
         return view('backend.bn.content.content_edit', compact('content', 'authors', 'categories', 'specialCategories', 'countries', 'districts', 'mis_reporters', 'author_list', 'normaltag_list'));
     }
 
@@ -528,11 +372,7 @@ imagedestroy($logo);
     {
         $this->validate($request, [
             'newsHeading' => 'required',
-//            'metaKeywords' => 'required',
-//            'briefNews' => 'required',
             'detailsNews' => 'required',
-//            'largeImage' => 'mimes:jpeg,jpg,png,gif|dimensions:width=750,height=390|max:300',
-//            'largeImage' => 'dimensions:width=750,height=390|max:2048',
             'largeImage' => 'max:2048',
         ],[
             'briefNews.required' => "Meta Description is required."
@@ -679,21 +519,8 @@ imagedestroy($logo);
 
         $content->meta_keywords = $request->metaKeywords;
         $content->status = $request->status;
-//        if (auth()->user()->role === 1 || auth()->user()->role === 2){
-//            $content->status = $request->status;
-//        }
-
-//        $content->status = $request->status;
         $content->podcast_id = $request->podcastId;
-
-        /*if ($content->status == 1) {
-            $content->created_at = now();
-        }*/
-
-
         $content->save();
-        //new GenerateHTMLController($request->category, $request->specialCategory, $request->subCategory);
-
 
         return redirect('admin/backend/bn-contents')->with('successMsg', 'The content has been updated successfully!');
 
@@ -740,7 +567,6 @@ imagedestroy($logo);
             $content->division_id   = District::find($request->district)->division_id;
         }
         $content->status = $request->showNews;
-//        $content->scroll = $request->scroll;
         $content->save();
 
         return redirect('admin/backend/bn-contents')->with('successMsg', 'The content has been quick-updated successfully!');
